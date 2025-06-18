@@ -24,19 +24,20 @@
     <button type="submit">Add Job</button>
   </form>
 
-  <hr>
-  <h2>Saved Applications</h2>
-  <ul>
-    {% for job in jobs %}
-      <li>
-        <strong>{{ job.company.strip() }}</strong> - {{ job.title.strip() }}  
-        <br><a href="{{ job.link }}" target="_blank">View Job Posting</a>  
-        <br>{{ job.notes }}
-        <br><br>
-      </li>
-    {% else %}
-      <p>No jobs saved yet.</p>
-    {% endfor %}
-  </ul>
+<hr>
+<h2>Saved Applications</h2>
+<div>
+  {% for job in jobs %}
+    <div class="job-card">
+      <strong>{{ job.company.strip() }}</strong> – {{ job.title.strip() }}<br>
+      <a href="{{ job.link }}" target="_blank">View Job Posting</a><br>
+      <em>{{ job.notes }}</em>
+    </div>
+  {% else %}
+    <p>No jobs saved yet.</p>
+  {% endfor %}
+</div>
+<h3>AI Insights (Coming Soon 👀)</h3>
+<p style="color: gray;">We'll use AI to analyze your job descriptions and give you smart recommendations here.</p>
 </body>
 </html>
