@@ -1,11 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Job Tracker</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8">
+  <title>Job Tracker</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Welcome to the AI-Powered Job Application Tracker</h1>
+  <h1>Job Application Tracker</h1>
+
+  <form action="/add" method="POST">
+    <label>Company Name:</label>
+    <input type="text" name="company" required><br>
+
+    <label>Job Title:</label>
+    <input type="text" name="title" required><br>
+
+    <label>Job Link:</label>
+    <input type="url" name="link"><br>
+
+    <label>Notes:</label><br>
+    <textarea name="notes" rows="4" cols="50"></textarea><br>
+
+    <button type="submit">Add Job</button>
+  </form>
+
+  <hr>
+  <h2>Saved Applications</h2>
+  <ul>
+    {% for job in jobs %}
+      <li>
+        <strong>{{ job.company.strip() }}</strong> - {{ job.title.strip() }}  
+        <br><a href="{{ job.link }}" target="_blank">View Job Posting</a>  
+        <br>{{ job.notes }}
+        <br><br>
+      </li>
+    {% else %}
+      <p>No jobs saved yet.</p>
+    {% endfor %}
+  </ul>
 </body>
 </html>
